@@ -1,0 +1,58 @@
+group 'com.zulily.argus'
+version '0.0.1'
+
+buildscript {
+    ext.libraryVersions = [
+            kotlin    : '1.3.71',
+            jackson   : '2.10.1',
+            koin      : '2.0.1',
+            javalin   : '3.7.0',
+            logging   : '1.7.25',
+            kotlinTest: '3.2.1',
+            mockk     : '1.9.3'
+    ]
+
+    ext.libraries = [
+            kotlinStdLib : "org.jetbrains.kotlin:kotlin-stdlib:${libraryVersions.kotlin}",
+            kotlinReflect: "org.jetbrains.kotlin:kotlin-reflect:${libraryVersions.kotlin}",
+            jacksonData  : "com.fasterxml.jackson.core:jackson-databind:${libraryVersions.jackson}",
+            jacksonKotlin: "com.fasterxml.jackson.module:jackson-module-kotlin:${libraryVersions.jackson}",
+            koin         : "org.koin:koin-core:${libraryVersions.koin}",
+            javalin      : "io.javalin:javalin:${libraryVersions.javalin}",
+            logging      : "org.slf4j:slf4j-simple:${libraryVersions.logging}",
+            kotlinTest   : "io.kotlintest:kotlintest-runner-junit5:${libraryVersions.kotlinTest}",
+            mockk        : "io.mockk:mockk:${libraryVersions.mockk}"
+    ]
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${libraryVersions.kotlin}"
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    apply plugin: 'kotlin'
+
+    compileKotlin {
+        kotlinOptions.jvmTarget = '1.8'
+    }
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = '1.8'
+    }
+
+    dependencies {
+        implementation libraries.kotlinStdLib
+        implementation libraries.logging
+        testImplementation libraries.kotlinTest
+        testImplementation libraries.mockk
+    }
+}

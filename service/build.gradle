@@ -1,0 +1,9 @@
+apply plugin: 'application'
+mainClassName = 'com.zulily.argus.service.AppKt'
+
+dependencies {
+    implementation libraries.javalin
+    implementation libraries.jacksonData
+    implementation libraries.jacksonKotlin
+    implementation libraries.koin
+}

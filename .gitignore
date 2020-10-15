@@ -1,0 +1,8 @@
+.gradle
+build
+.kotlintest
+.DS_Store
+.idea
+*.iml
+Dockerfile
+out
